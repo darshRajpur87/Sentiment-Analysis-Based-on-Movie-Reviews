@@ -1,1 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Multilingual Sentiment Analyzer</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #dfe9f3, #ffffff);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 5% auto;
+            padding: 40px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        p.instructions {
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            resize: vertical;
+            font-size: 16px;
+            font-family: inherit;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .result {
+            margin-top: 30px;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 18px;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+
+        .emoji {
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>🌍 Multilingual Sentiment Analyzer</h2>
+        <p class="instructions">Enter a movie review in <strong>English, Hindi, or Spanish</strong>. This tool will analyze its sentiment and tell you whether it's positive or negative.</p>
+        
+        <form method="post" action="/predict">
+            <textarea name="review" rows="4" placeholder="Write your review here..."></textarea><br>
+            <div style="text-align: center;">
+                <button type="submit">Analyze Sentiment</button>
+            </div>
+        </form>
+
+        {% if sentiment %}
+        <div class="result">
+            <strong>Sentiment:</strong> {{ sentiment }} 
+            {% if sentiment == "👍 Positive" %}
+                <span class="emoji">😊</span>
+            {% elif sentiment == "👎 Negative" %}
+                <span class="emoji">😞</span>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
 
